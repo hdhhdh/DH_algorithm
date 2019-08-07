@@ -28,7 +28,7 @@ int main()
 		cin >> a[i].start >> a[i].end;
 	}
 	
-	sort(a, a+n, compare);
+	sort(a, a+n+1, compare);
 	
 	for(int i = 1; i<=n; i++)
 	{
