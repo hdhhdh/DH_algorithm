@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-int dp[100];
+long long dp[100];
 
 int T;
 
