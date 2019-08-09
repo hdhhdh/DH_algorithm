@@ -19,14 +19,13 @@ int main()
 	{
 		if(i + ti[i] >= n + 1)
 		{
-			dp[i] = 0;
+			dp[i] = max(dp[i+1], 0);
 			continue;
 		} 
 		dp[i] = max(dp[i+1], dp[i + ti[i]] + pi[i]);
 	}
 	
 	cout << dp[0];
-
 	return 0;
 	
 }
