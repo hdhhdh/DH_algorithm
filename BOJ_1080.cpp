@@ -17,7 +17,6 @@ void trans(int x, int y)
 		{
 			if (ary[i][j] == 1) ary[i][j] = 0;
 			else ary[i][j] = 1;
-			//ary[i][j] = 1 - ary[i][j];
 		}
 	}
 }
