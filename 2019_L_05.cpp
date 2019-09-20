@@ -3,7 +3,7 @@
 #include <algorithm>
 #include <queue>
 
-bool visited[200000];
+bool visited[200000][2];
 
 using namespace std;
 int cnt = 0;
@@ -12,8 +12,8 @@ int main()
 	int c = 0, b = 0;
 	cin >> c >> b;
 
-	queue<int> q;
-	q.push(b);
+	queue<pair<int, int>> q;
+	q.push(make_pair(b, 0));
 
 	if (c == b)
 	{
@@ -29,28 +29,40 @@ int main()
 		int size = q.size();				//현재 큐에 있는것만큼 결과 계산후 다시 넣어줘야하므로
 		for (int j = 0; j < size; j++)
 		{
-			pop_value = q.front();
+			pop_value = q.front().first;
+			int new_time = (q.front().second + 1) % 2;
+			int new_value;
+
 			q.pop();
-			if (pop_value == c)
+			
+			
+			if (visited[c][cnt % 2])
 			{
 				cout << cnt;
 				return 0;
 			}
 
-			if (pop_value - 1 >= 0 && visited[pop_value - 1] == false)
+			new_value = pop_value - 1;
+
+			if (new_value >= 0 && visited[new_value][new_time] == false)
 			{
-				q.push(pop_value - 1);
-				visited[pop_value - 1] = true;
+				visited[new_value][new_time] = true;
+				q.push(make_pair(new_value, new_time));
 			}
-			if (pop_value + 1 <= 200000 && visited[pop_value + 1] == false)
+
+			new_value = pop_value + 1;
+
+			if (new_value <= 200000 && visited[new_value][new_time] == false)
 			{
-				q.push(pop_value + 1);
-				visited[pop_value + 1] = true;
+				visited[new_value][new_time] = true;
+				q.push(make_pair(new_value, new_time));
 			}
-			if (pop_value * 2 <= 200000 && visited[pop_value * 2] == false)
+
+			new_value = pop_value * 2;
+			if (new_value <= 200000 && visited[new_value][new_time] == false)
 			{
-				q.push(pop_value * 2);
-				visited[pop_value * 2] = true;
+				visited[new_value][new_time] = true;
+				q.push(make_pair(new_value, new_time));
 			}
 		}
 		cnt++;
