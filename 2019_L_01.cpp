@@ -11,13 +11,14 @@ int main()
 	cin >> N;
 	long long small = N + 1;
 
-	for (long long i = 1; i < N / 2; i++)
+	for (long long i = 1; i <= N / 2; i++)
 	{
 		if (N % i == 0)
 		{
 			w = i;
 			h = N / i;
 			small = min(small, abs(w - h));
+			if (w > h) break;
 		}
 	}
 
